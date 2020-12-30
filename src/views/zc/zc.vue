@@ -1,0 +1,114 @@
+<template>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <img src="../../assets/下载.png" alt="" />
+      </div>
+      <div>
+        <input type="text" placeholder="请输入手机号" />
+        <div>获取验证码</div>
+      </div>
+      <div>
+        <input type="text" placeholder="请输入验证码" />
+      </div>
+
+      <div>
+        <span>*未注册的手机号将自动注册</span>
+        <span @click="goLogin">使用密码登录</span>
+      </div>
+    </div>
+    <div class="foot">
+        <button>登录</button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  created() {},
+  mounted() {},
+  methods: {
+    // 跳转到登录页
+    goLogin(){
+      this.$router.push('/login')
+    }
+  },
+  computed: {},
+};
+</script>
+
+<style lang="scss" scoped>
+.wrap {
+  width: 100%;
+  padding: 0 0.48rem;
+  box-sizing: border-box;
+  .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div:nth-of-type(1) {
+      width: 80%;
+      img {
+        width: 100%;
+        margin: 1.3rem auto;
+      }
+    }
+    div:nth-of-type(2) {
+      width: 100%;
+      height: 1rem;
+      border-bottom: 0.01rem solid #dddddd;
+      display: flex;
+      align-items: center;
+      input {
+        height: 0.53rem;
+        width: 80%;
+        height: 100%;
+        border: 0;
+        font-size: 0.26rem;
+      }
+      div {
+        font-size: 0.26rem;
+        flex: 1;
+        color: #eb6100;
+      }
+    }
+    div:nth-of-type(3) {
+      width: 100%;
+      height: 1rem;
+      border-bottom: 0.01rem solid #dddddd;
+      display: flex;
+      input {
+        height: 0.53rem;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        font-size: 0.26rem;
+      }
+    }
+    div:nth-of-type(4) {
+      width: 100%;
+      line-height: 1rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: .22rem;
+      color: #b7b7b7;
+    }
+  }
+  .foot{
+      width: 100%;
+      button{
+          width: 100%;
+         line-height: 1rem;
+         font-size: .3rem;
+         border: 0;
+         color: #ffffff;
+         border-radius: .4rem;
+         background:linear-gradient(to right,rgb(216, 125, 6),#ee6306)
+      }
+  }
+}
+</style>

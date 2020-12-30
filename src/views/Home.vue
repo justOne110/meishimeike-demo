@@ -1,18 +1,33 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="wrap">
+    <router-view/>
+    <!-- 底部tabBar -->
+      <tabBar/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+//导入子组件
+import tabBar from './conponents/tabBar'
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      active:0
+    };
+  },
+  created() {},
+  mounted() {},
+  methods: {},
+  computed: {},
+  components:{
+    tabBar,// 底部tabbar
   }
-}
+};
 </script>
+
+<style scoped>
+.wrap {
+  width: 100%;
+  height: 100%;
+}
+</style>

@@ -8,16 +8,63 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    redirect:'/index',
+    component: Home,
+    children:[
+      {
+        path:'/index',
+        name:'Index',
+        component:()=> import('../views/index/index'),
+        meta:{keepAlive:false}
+      },
+      {
+        path:'/class',
+        name:'class',
+        component:()=> import('../views/class/class'),
+        meta:{keepAlive:false}
+      },
+      {
+        path:'/log',
+        name:'Log',
+        component:()=> import('../views/log/log'),
+        meta:{keepAlive:false}
+      },
+      {
+        path:'/practice',
+        name:'Practice',
+        component:()=> import('../views/practice/practice'),
+        meta:{keepAlive:false}
+      },
+      {
+        path:'/my',
+        name:'My',
+        component:()=> import('../views/my/my'),
+        meta:{keepAlive:false}
+      },
+    ]
   },
+  // 登录
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path:'/login',
+    name:'Login',
+    component:()=>import('../views/login/login'),
+    meta:{keepAlive:false}
+  },
+  // 注册
+  {
+    path:'/zc',
+    name:'Zc',
+    component:()=>import('../views/zc/zc'),
+    meta:{keepAlive:false}
+  },
+  // 详情
+  {
+    path:'/detail',
+    name:'Detail',
+    component:()=>import('../views/detail/index'),
+    meta:{keepAlive:false}
   }
+
 ]
 
 const router = new VueRouter({
