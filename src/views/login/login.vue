@@ -5,10 +5,10 @@
         <img src="../../assets/下载.png" alt="" />
       </div>
       <div>
-        <input type="text" placeholder="请输入手机号" />
+        <input v-model="mobile" type="text" placeholder="请输入手机号" />
       </div>
       <div>
-        <input  placeholder="请输入密码" type="password"/>
+        <input v-model="pass" placeholder="请输入密码" type="password" />
       </div>
 
       <div>
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="foot">
-        <button>登录</button>
+      <button @click="login">登录</button>
     </div>
   </div>
 </template>
@@ -25,15 +25,29 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      mobile: "18210591945  ",
+      pass: "",
+    };
   },
   created() {},
   mounted() {},
   methods: {
-      // 跳转到注册页
-      goZc(){
-          this.$router.push('/zc')
-      }
+    // 跳转到注册页
+    goZc() {
+      this.$router.push("/zc");
+    },
+    // 登录
+    async login() {
+      let { data: res } = await this.$axios.passLogin(this.mobile, this.pass);
+      console.log(res)
+      
+      // 存储token
+      sessionStorage.setItem('token', res.data.remember_token);
+
+      //跳转页面
+      this.$router.push("/my");
+    },
   },
   computed: {},
 };
@@ -69,7 +83,6 @@ export default {
         border: 0;
         font-size: 0.26rem;
       }
-    
     }
     div:nth-of-type(3) {
       width: 100%;
@@ -89,21 +102,21 @@ export default {
       line-height: 1rem;
       display: flex;
       justify-content: space-between;
-      font-size: .22rem;
+      font-size: 0.22rem;
       color: #b7b7b7;
     }
   }
-  .foot{
+  .foot {
+    width: 100%;
+    button {
       width: 100%;
-      button{
-          width: 100%;
-         line-height: 1rem;
-         font-size: .3rem;
-         border: 0;
-         color: #ffffff;
-         border-radius: .4rem;
-         background:linear-gradient(to right,rgb(216, 125, 6),#ee6306)
-      }
+      line-height: 1rem;
+      font-size: 0.3rem;
+      border: 0;
+      color: #ffffff;
+      border-radius: 0.4rem;
+      background: linear-gradient(to right, rgb(216, 125, 6), #ee6306);
+    }
   }
 }
 </style>

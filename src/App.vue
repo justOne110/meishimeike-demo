@@ -13,5 +13,9 @@
 html,body,#app{
   width: 100%;
   // height: 100%;
+    min-height: 17rem !important;
+  background: #f0f2f5;
+  font-size: .4rem;
+
 }
 </style>

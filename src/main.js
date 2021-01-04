@@ -15,6 +15,18 @@ Vue.prototype.$axios = axios
 import 'vant/lib/icon/local.css'
 import './vant/index.js'
 
+
+// 路由守卫、
+router.beforeEach((to, from, next) => {
+
+  // console.log(to.path)
+  let token = sessionStorage.getItem('token')
+  if (to.path == "/my") {
+    token == null ? next('/login') : ""
+  }
+
+  next()
+})
 new Vue({
   router,
   store,
