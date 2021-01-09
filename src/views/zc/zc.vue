@@ -102,6 +102,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrap {
+  background: #fff;
   width: 100%;
   padding: 0 0.48rem;
   box-sizing: border-box;

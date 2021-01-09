@@ -19,9 +19,16 @@ import {
   Picker,
   Popup,
   DatetimePicker,
-  Area
+  Uploader,
+  Area,
+  Search,
+  Dialog,
+  SwitchCell
 } from 'vant';
-
+Vue.use(SwitchCell);
+Vue.use(Dialog);
+Vue.use(Search);
+Vue.use(Uploader);
 Vue.use(Empty);
 Vue.use(Button);
 Vue.use(Tabbar);

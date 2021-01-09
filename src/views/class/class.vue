@@ -11,25 +11,25 @@
       <!-- 分类 -->
       <van-dropdown-item v-model="value1" title="分类" ref="classRef">
         <div>
-          <p>{{ grade.name }}</p>
+          <!-- <p>{{ grade.name }}</p> -->
           <div>
-            <span
+            <!-- <span
               @click="gradeId(item.id)"
               v-for="(item, index) in grade.child"
               :key="index"
               >{{ item.name }}</span
-            >
+            > -->
           </div>
         </div>
         <div>
-          <p>{{ subject.name }}</p>
+          <!-- <p>{{ subject.name }}</p> -->
           <div>
-            <span
+            <!-- <span
               @click="subjectId(item.id)"
               v-for="(item, index) in subject.child"
               :key="index"
               >{{ item.name }}</span
-            >
+            > -->
           </div>
         </div>
 
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+
 import course from "../conponents/course";
 export default {
   data() {

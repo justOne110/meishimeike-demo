@@ -1,8 +1,7 @@
 <template>
   <div>
     <van-nav-bar title="个人信息" left-arrow @click-left="onClickLeft" />
-
-    <van-cell title="头像">
+    <van-cell title="头像" @click="imgPopup">
       <!-- 使用 right-icon 插槽来自定义右侧图标 -->
       <template #right-icon>
         <img :src="userInfo.avatar" alt="" />
@@ -28,14 +27,14 @@
     />
     <van-cell title="所属城市" is-link :value="sCity" @click="selectCity" />
 
-    <van-cell title="学科" is-link :value="userInfo.attr[1].attr_value" />
-    <van-cell title="年级" is-link value="请选择" @click="dj" />
+    <!-- <van-cell title="学科" is-link :value="userInfo.attr[1].attr_value" /> -->
+    <!-- <van-cell title="年级" is-link value="请选择" @click="dj" /> -->
 
     <!-- 学科弹出框 -->
-    <van-popup v-model="show" position="bottom">
+    <!-- <van-popup v-model="show" position="bottom">
       <van-picker show-toolbar :columns="columns.name" />
-    </van-popup>
-    <!-- 年级弹出框 -->
+    </van-popup> -->
+    <!-- 出生日期 -->
     <van-popup v-model="time" position="bottom">
       <van-datetime-picker
         v-model="currentDate"
@@ -49,6 +48,15 @@
     <van-popup v-model="city" position="bottom">
       <van-area @confirm="setCity" :area-list="areaList" />
     </van-popup>
+
+    <!-- 选择头像 -->
+    <van-popup v-model="imgFlag" position="bottom">
+      <van-uploader  :after-read="afterRead">
+        <van-button icon="plus" type="primary">上传文件</van-button>
+        <!-- <input type="file"/> -->
+      </van-uploader>
+    </van-popup>
+    <!-- {{ files }} -->
   </div>
 </template>
 
@@ -63,6 +71,7 @@ export default {
       show: false,
       time: false,
       city: false,
+      imgFlag: false,
       sCity: "",
       areaList: citys,
       userInfo: [], // 获取的信息
@@ -79,12 +88,15 @@ export default {
         // "高一",
         // "高二",
         // "高三",
-        {class:"小学一年级",id:"18"},
-        {class:"小学二年级",id:"18"},
+        // {class:"小学一年级",id:"18"},
+        // {class:"小学二年级",id:"18"},
       ],
+      files: [],
     };
   },
-  created() {},
+  created() {
+    console.log(this.files);
+  },
   mounted() {
     this.getUSerInfo();
   },
@@ -100,13 +112,18 @@ export default {
       console.log(res);
       this.userInfo = res.data;
       // this.currentDate = res.data.birthday;
-       this.sCity = res.data.province_name + "," + res.data.city_name + "," + res.data.district_name;
+      this.sCity =
+        res.data.province_name +
+        "," +
+        res.data.city_name +
+        "," +
+        res.data.district_name;
     },
 
-    // 获取学科，年级
-    async getGrade(){
+    // // 获取学科，年级
+    // async getGrade(){
 
-    },
+    // },
     // 点击单元格
     dj() {
       this.show = true;
@@ -148,8 +165,6 @@ export default {
       let { code: province_id } = e[1];
       let { code: district_id } = e[2];
 
-
-     
       // 调用接口
       let res = await this.$axios.setInfos({
         city_id: city_id,
@@ -161,6 +176,26 @@ export default {
       this.city = false;
 
       this.getUSerInfo();
+    },
+
+    // 点击弹出选择图片
+    imgPopup() {
+      this.imgFlag = true;
+    },
+    afterRead(e) {
+      console.log(e.file);
+      let content = e.file;
+      let data = new FormData();
+      data.append("file", content);
+      this.$axios.updateImg(data).then((res) => {
+        console.log(res);
+
+        this.$axios.setInfos({ avatar: res.data.data.path }).then((re) => {
+          console.log(re);
+          this.imgFlag = false;
+          this.getUSerInfo();
+        });
+      });
     },
   },
   computed: {},

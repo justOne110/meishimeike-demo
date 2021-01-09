@@ -80,78 +80,151 @@ function dropdown() {
     return Server({
         url: "/courseClassify",
         method: "get",
-        
+
     })
 }
 
 //课程数据
-function classfiy(){
+function classfiy() {
     return Server({
-        url:"/courseBasis?page=1&limit=10&",
-        method:"get"
+        url: "/courseBasis?page=1&limit=10&",
+        method: "get"
     })
 }
 
 // 选择课程年纪
-function gradeClassfiy(id){
+function gradeClassfiy(id) {
     return Server({
-        url:`/courseBasis?page=1&limit=10&attr_val_id=${id}&`,
-        method:"get"
+        url: `/courseBasis?page=1&limit=10&attr_val_id=${id}&`,
+        method: "get"
     })
 }
 // 排序
-function sort(order,id){
+function sort(order, id) {
     return Server({
-        url:`/courseBasis?page=1&limit=10&course_type=0&classify_id=&order_by=${order}&attr_val_id=${id}&is_vip=0&`
+        url: `/courseBasis?page=1&limit=10&course_type=0&classify_id=&order_by=${order}&attr_val_id=${id}&is_vip=0&`
     })
 }
 
 // 约课
-function makeClass(type){
+function makeClass(type) {
     return Server({
-        url:"/oto/myInviteCourse/index",
-        method:"post",
-        data:{
-            page:"1",
-            limit:"10",
-            type:type
+        url: "/oto/myInviteCourse/index",
+        method: "post",
+        data: {
+            page: "1",
+            limit: "10",
+            type: type
         }
     })
 }
 
 // 登录信息
-function getuser(){
+function getuser() {
     return Server({
-        url:"/getUCenterInfo?",
-        method:"get",
+        url: "/getUCenterInfo?",
+        method: "get",
         hideloading: true // 隐藏 loading 组件
     })
 }
 
 // 修改个人信息
-function uesrInfo(){
+function uesrInfo() {
     return Server({
-        url:"/userInfo?",
-        method:"get",
+        url: "/userInfo?",
+        method: "get",
 
     })
 }
 // 关注的老师
-function payTeacher(){
+function payTeacher() {
     return Server({
-        url:"/collect?page=1&limit=10&type=2&",
-        method:"get"
+        url: "/collect?page=1&limit=10&type=2&",
+        method: "get"
     })
 }
 // 修改用户名
-function setInfos(data){
+function setInfos(data) {
     return Server({
-        url:"/user",
+        url: "/user",
+        method: "put",
+        data: data
+    })
+}
+// 上传图片
+function updateImg(data) {
+    return Server({
+        url: "/public/img",
+        method: "post",
+        data: data
+    })
+}
+
+// 搜索
+function serach(keyword){
+    return Server({
+        url:`/courseBasis?limit=10&page=1&course_type=0&keywords=${keyword}`,
+        method:"get"
+    })
+}
+
+// 意见反馈
+function feedback(data){
+    return Server({
+        url:'/feedback',
+        method:'post',
+        data:{content:data}
+    })
+}
+
+// 获取地址
+function getAddress(){
+    return Server({
+        url:"/address",
+        method:"get"
+    })
+}
+
+// 添加收货地址
+function setAddRess(data){
+    return Server({
+        url:"/address",
+        method:"post",
+        data:data
+    })
+}
+
+// 获取修改地址
+function getAddresss(id){
+    return Server({
+        url:`/address/${id}`,
+        method:"get"
+    })
+}
+
+// 修改地址
+
+function setAddresss(id,data){
+    return Server({
+        url:`/address/${id}`,
         method:"put",
         data:data
     })
 }
+
+function del(id){
+    return Server({
+        url:`/address/${id}`,
+        method:"delete",
+    })
+}
 export default {
+    del,
+    setAddresss,
+    getAddresss,
+    setAddRess,
+    getAddress,
+    feedback,
     banner,
     getList,
     goDetail,
@@ -167,5 +240,7 @@ export default {
     getuser,
     uesrInfo,
     payTeacher,
-    setInfos
+    setInfos,
+    updateImg,
+    serach
 }

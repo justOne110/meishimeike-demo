@@ -26,8 +26,8 @@
 export default {
   data() {
     return {
-      mobile: "18210591945  ",
-      pass: "",
+      mobile: "16619965544",
+      pass: "tgx282799389",
     };
   },
   created() {},
@@ -58,6 +58,7 @@ export default {
   width: 100%;
   padding: 0 0.48rem;
   box-sizing: border-box;
+  background: #fff;
   .top {
     display: flex;
     flex-direction: column;

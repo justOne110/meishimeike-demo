@@ -6,9 +6,9 @@
           <div>
             <img :src="user.avatar" alt="" />
           </div>
-          <div>
+          <div @click="goInfo">
             <span>{{user.nickname}}</span>
-            <span @click="goInfo"></span>
+            <span></span>
           </div>
         </div>
         <div class="tapBottom">
@@ -89,6 +89,10 @@
               <div><img src="../../assets/vip.png" alt="" /></div>
               <p>会员</p>
             </div>
+            <div @click="goAddress">
+              <div><img src="../../assets/vip.png" alt="" /></div>
+              <p>地址管理</p>
+            </div>
           </div>
         </li>
         <li>
@@ -98,7 +102,7 @@
               <div><img src="../../assets/tx.png" alt="" /></div>
               <p>我的消息</p>
             </div>
-            <div>
+            <div @click="goIdea">
               <div><img src="../../assets/tx.png" alt="" /></div>
               <p>意见反馈</p>
             </div>
@@ -106,7 +110,7 @@
               <div><img src="../../assets/tx.png" alt="" /></div>
               <p>在线客服</p>
             </div>
-            <div>
+            <div @click="setting">
               <div><img src="../../assets/tx.png" alt="" /></div>
               <p>设置</p>
             </div>
@@ -114,6 +118,8 @@
         </li>
       </ul>
     </div>
+
+    <!-- {{user}} -->
   </div>
 </template>
 
@@ -132,8 +138,9 @@ export default {
       // 获取用户信息
       async getUser(){
         let {data:res} = await this.$axios.getuser()
-        console.log(res)
         this.user = res.data
+        console.log(res.data)
+
       },
       // 一对一辅导
       coach(){
@@ -145,6 +152,18 @@ export default {
       },
       goPay(){
         this.$router.push('/pay')
+      },
+      // 进入设置
+      setting(){
+        this.$router.push('/setting')
+      },
+      // 进入意见反馈
+      goIdea(){
+        this.$router.push('/idea')
+      },
+      // 进入地址管理
+      goAddress(){
+        this.$router.push('/address')
       }
   },
   computed: {},

@@ -66,25 +66,67 @@ const routes = [
   },
   // 查看个人信息
   {
-    path:"/info",
-    name:"Info",
-    component:()=> import ('../views/info/info'),
-    meta:{keepAlive:false}
+    path: "/info",
+    name: "Info",
+    component: () => import('../views/info/info'),
+    meta: { keepAlive: false }
   },
   // 修改个人信息
   {
-    path:"/setName",
-    name:"Setname",
-    component:()=> import ('../views/info/setName'),
-    meta:{keepAlive:false}
+    path: "/setName",
+    name: "Setname",
+    component: () => import('../views/info/setName'),
+    meta: { keepAlive: false }
   },
   // 关注
   {
-    path:"/pay",
-    name:"Pay",
-    component:()=> import ('../views/pay/pay'),
-    meta:{keepAlive:false}
-  }
+    path: "/pay",
+    name: "Pay",
+    component: () => import('../views/pay/pay'),
+    meta: { keepAlive: false }
+  },
+  // 设置
+  {
+    path: "/setting",
+    name: "Setting",
+    component: () => import('../views/setting/setting'),
+    meta: { keepAlive: false }
+  },
+  // 搜索页
+  {
+    path: "/search",
+    name: "Search",
+    component: () => import('../views/search/search'),
+    meta: { keepAlive: false }
+  },
+  // 意见反馈
+  {
+    path: "/idea",
+    name: "Idea",
+    component: () => import('../views/idea/idea'),
+    meta: { keepAlive: false }
+  },
+  // 地址管理
+  {
+    path: "/address",
+    name: "Address",
+    component: () => import('../views/address/address'),
+    meta: { keepAlive: false }
+  },
+  // 添加地址
+  {
+    path: "/address-edit",
+    name: "Address-edit",
+    component: () => import('../views/addAressEdit/addAressEdit'),
+    meta: { keepAlive: false }
+  },
+  // 修改
+  {
+    path: "/address-update",
+    name: "Address-update",
+    component: () => import('../views/addAressUpdate/addAressUpdate'),
+    meta: { keepAlive: false }
+  },
 
 ]
 
